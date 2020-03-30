@@ -8,14 +8,16 @@ const inquirer = require("inquirer");
 const path = require("path");
 
 
-// const OUTPUTDIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, 'team.html');
+const OUTPUTDIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUTDIR, 'team.html');
 
 // crrate inquirer 'add enother employee' prompt
 const confirm = 
     {
-        message: 'add an employee',
-        choice: 'confirm'
+        message: 'Add an employee?',
+        name: 'name',
+        type: 'confirm',
+        // choice: 'confirm'
     }
 
 // create array to hold employee entered data
@@ -26,7 +28,7 @@ const questions = [
         type: 'list',
         name: 'role',
         message: 'What is your role?',
-        choices: ['Manager', 'Engineer', 'Intern']
+        choices: ['Engineer', 'Manager', 'Intern']
     },
     {
         type: 'input',
@@ -56,15 +58,15 @@ const engineerQ = [
 const internQ = [
     {
         type: 'input',
-        name: 'officeNumber',
-        message: 'What is your office number?'
+        name: 'school',
+        message: 'What is your school?'
     }
 ];
 const managerQ = [
     {
         type: 'input',
-        name: 'school',
-        message: 'What is the name of your School?'
+        name: 'officeNumber',
+        message: 'What is the name of your office number?'
     }
 ];
 
@@ -73,54 +75,59 @@ const engineers = async (data) => {
     const res = await inquirer.prompt(engineerQ)
     const e = new Engineer(data.name, data.id, data.email, res.github)
     employees.push(e)
-    console.log(employees)
+    // JSON.stringify to be able to see data in object
+    // let employeesOBJ = JSON.stringify(employees);
+    // console.log('employeesOBJ = ' + employeesOBJ);
     init()
 };
 const managers = async (data) => {
     const res = await inquirer.prompt(managerQ)
     const e = new Manager(data.name, data.id, data.email, res.officeNumber)
     employees.push(e)
-    console.log(employees)
+    // JSON.stringify to be able to see data in object
+    // let employeesOBJ = JSON.stringify(employees);
+    // console.log('employeesOBJ = ' + employeesOBJ);
     init()
 };
 const interns = async (data) => {
     const res = await inquirer.prompt(internQ)
     const e = new Intern(data.name, data.id, data.email, res.school)
     employees.push(e)
-
-    console.log(employees)
+    // JSON.stringify to be able to see data in object
+    // let employeesOBJ = JSON.stringify(employees);
+    // console.log('employeesOBJ = ' + employeesOBJ);
     init()
 };
 
-// const engineer = (data) => {
-//     console.log(data)
-// };
-
-// create exit() function to render HTML upon exit
-const exit = async (data) => {
-    render(employees)
-};
 // init() function to start prompting of Data
 const init = async () => {
-    const choice = await inquirer.prompt(confirm)
-    .then
-    if(!choice.confirm) {
-        const res = await inquirer.prompt(questions)        
-        console.log(res)
+    const choice = await inquirer.prompt(confirm);  
+    if(choice.name) {
+        console.log('choice.confirm = ' , choice);
+        const res = await inquirer.prompt(questions);        
+        console.log(res);
         // Depending on role choice, return appropriate role function with the 'res' as the data
         switch(res.role) {
             case 'Manager':
-                return managers(res)                
+                return managers(res) ;               
             case 'Engineer':
-                return engineers(res)
+                return engineers(res);
             case 'Intern':
-                return interns(res)
+                return interns(res);
         }
     }else { 
-        exit(employees)  
-    console.log('choice is false');
-    };
-    
+        exit(employees);  
+    console.log('Thanks for your input.');
+    };    
 };
+
+// create exit() function to render HTML upon exit
+const exit = async (data) => {
+    let filledIn = render(employees)
+    fs.writeFile(outputPath, filledIn, ()=>{
+//call a command in node
+    })
+};
+
 // Start init() function
 init();
