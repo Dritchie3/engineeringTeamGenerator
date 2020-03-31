@@ -4,9 +4,10 @@ Cool project.  Upon starting the app, you will be prompted, using a CLI, to ente
 
 The github url: https://github.com/Dritchie3/engineeringTeamGenerator
 
-You can find a 'WEBM' demo of the project operating in the file 'TeamBuildApp'. it is 75 seconds long.
+You can find a 'WEBM' demo of the project operating in the file 'TeamBuildApp1'. it is 15 seconds long.
+https://drive.google.com/file/d/1CxFmkN5H57dk-MPdA-xWoaIRqFUAo7aS/view
 
-A picture of a sample html rendering is in the file TeamBuildAppPic.png
+A picture of a sample html rendering is in the file TeamBuildAppPic1.png
 
 
 # Unit 10 OOP Homework: Template Engine - Employee Summary
