@@ -6,6 +6,7 @@ const Intern = require("./lib/Intern");
 const render = require('./lib/htmlRenderer');
 const inquirer = require("inquirer");
 const path = require("path");
+const opn = require('opn');
 
 
 const OUTPUTDIR = path.resolve(__dirname, "output");
@@ -17,7 +18,6 @@ const confirm =
         message: 'Add an employee?',
         name: 'name',
         type: 'confirm',
-        // choice: 'confirm'
     }
 
 // create array to hold employee entered data
@@ -103,9 +103,8 @@ const interns = async (data) => {
 const init = async () => {
     const choice = await inquirer.prompt(confirm);  
     if(choice.name) {
-        console.log('choice.confirm = ' , choice);
         const res = await inquirer.prompt(questions);        
-        console.log(res);
+        // console.log(res);
         // Depending on role choice, return appropriate role function with the 'res' as the data
         switch(res.role) {
             case 'Manager':
@@ -117,7 +116,7 @@ const init = async () => {
         }
     }else { 
         exit(employees);  
-    console.log('Thanks for your input.');
+    console.log('Thanks You.');
     };    
 };
 
@@ -125,7 +124,8 @@ const init = async () => {
 const exit = async (data) => {
     let filledIn = render(employees)
     fs.writeFile(outputPath, filledIn, ()=>{
-//call a command in node
+    // open(path.join(process.cwd(), "team.html"));
+    opn('127.0.0.1:5500/Develop/output/team.html', {app: 'Chrome'});
     })
 };
 
