@@ -1,3 +1,14 @@
+Team generator
+
+Cool project.  Upon starting the app, you will be prompted, using a CLI, to enter emplyee info.  Things like Name, role, id, email, github, school, or office number.  Then the app will render an HTML pge that will have this info and it will be color coded and seperated onto cards making it easy to read.  This project allowed us to utilize Nodejs with various packages.  I added a package called 'opn'.  This package allowed me to have the code open the rendered-HTML automaticaly upon finishing the 'inquirer prompts'.  
+
+The github url: https://github.com/Dritchie3/engineeringTeamGenerator
+
+You can find a 'WEBM' demo of the project operating in the file 'TeamBuildApp'. it is 75 seconds long.
+
+A picture of a sample html rendering is in the file TeamBuildAppPic.png
+
+
 # Unit 10 OOP Homework: Template Engine - Employee Summary
 
 One of the most important aspects of programming is writing code that is readable, reliable, and maintainable. Oftentimes, *how* we design our code is just as important as the code itself. In this homework assignment, your challenge is to build a Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. Since testing is a key piece in making code maintainable, you will also be ensuring that all unit tests pass.
